@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Automated aAnNsS Password Generator App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-compatible" content="ie=edge">
+        <link rel="shortcut icon" href="./img/chicken-recipe.png">
+        <link rel="stylesheet" href="./css/index.css">
+    </head>
+    <body>
+        <header>
+            <h1>Automated <span class="aColor">aA</span><span class="nColor">nN</span><span class="sColor">sS</span> Password Generator App</h1>
+        </header>
+        <main>
+            <section class="passwordGenerator">
+                <div id="errorBox" class="message">
+                    Success or error message displays here
+                </div>
+                <div id="passwordUpdate" class="message" >
+                    Latest update to password displays here
+                </div>
+
+                <!---->
+                <div id="userApi" class="message">Final value displays here</div>
+
+                <form>
+                    <div class="passwordStrength">
+                        <div class="grey" id="passwordCommentBox">8 characters min | 64 characters max</div>
+                        <div class="lightgrey" id="colorBox_1"></div>
+                        <div class="lightgrey" id="colorBox_2"></div>
+                        <div class="lightgrey" id="colorBox_3"></div>
+                    </div>
+                    <input id="allowedCharactersField" class="allowedCharactersField" name="text" type="text" placeholder="Type e.g. aAs here" maxlength="64" autocomplete="off">
+                    <div id="displayPasswordLength">Password Length: 0</div>
+                    <input class="outputField" id="typeConversionField" name="text" type="text" placeholder="Output displays here" maxlength="64" autocomplete="off">
+                    <button id="copyPasswordBtn" class="copyPasswordBtn">Copy Password</button>
+                </form>
+                <div id="displayRatio"></div>
+            </section>
+            <section class="passwordAnalyser">
+                <div id="showPercentage"></div>
+                <article>
+                    <div id="graphArea">
+                        <div id="aA">
+                            <div id="aA_percentage">0%</div>
+                        </div>
+                        <div id="nN">
+                            <div id="nN_percentage">0%</div>
+                        </div>
+                        <div id="sS">
+                            <div id="sS_percentage">0%</div>
+                        </div>
+                    </div>
+                    <div id="approximateTotal">Note: aA% + nN% + sS% &#8773 100%</div>
+                    <!--
+                    <div id="total">aA% + nN% + sS% = 0%</div>
+                    -->
+                </article>
+            </section>
+
+        </main>
+        <button class="headerButton">About aAnNsS Password Generator</button>
+            <button class="headerButton">How to use use the App </button>
+        <footer>
+
+                <p>App Creator: Obiagba Mary</p>
+                <p>Published: August 2020</p>
+                <p>Google Africa Developer Scholarship 2020 Program Learner</p>
+                <p>&copy;2020</p>
+        </footer>
+       <script src="./js/PROGRESS.js"></script>
+    </body>
+</html>
