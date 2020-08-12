@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: linear-gradient(to top right, #222, #333);
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+
+/*
+html, body {
+
+
+    background: #ffd3ac;
+    background-color: #333;
+}*/
+
+body {
+    background: transparent;
+    max-width: 85%;
+    margin: 30px auto;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+}
+
+main {
+    background: #eee;
+    padding: 20px 0;
+    box-shadow: -1px 1px 5px black;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+main > * {
+    width: 90%;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin: 0 0 30px 0;
+    font-weight: 500;
+    line-height: 35px;
+}
+
+.headerButton {
+    margin: 30px auto 0 auto;
+    width: 100%;
+    height: 40px;
+    background: #555;
+    font-size: 1.1em;
+    box-shadow: -1px 1px 3px black;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: #eee;
+    /*color: #f1f1f1;*/
+    /*text-transform: uppercase;*/
+}
+
+.aColor {
+    color: #0059ff;
+}
+
+.nColor {
+    color: #02ec7f;
+}
+
+.sColor {
+    color: #ff7b00;
+}
+
+.message {
+    color: grey;
+    height: 30px;
+}
+
+input[type=text] {
+    font-size: 1em;
+    border: 1px solid #999;
+    margin: 2px 0;
+    padding: 5px;
+}
+
+input[type=text].outputField {
+    margin: 0;
+    /*border-bottom: 1px solid transparent;*/
+}
+
+.passwordStrength {
+    font-size: 0.9em;
+    width: fit-content;
+    margin: 0 0 0 auto;
+}
+
+.passwordStrength > * {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+}
+
+#passwordCommentBox {
+    height: unset;
+    width: unset;
+}
+
+/*
+#colorBox_1, #colorBox_2, #colorBox_3 {
+    box-shadow: 1px -1px 1px #333;
+}*/
+
+#displayPasswordLength {
+    font-size: 0.9em;
+    margin: 5px 0 0 auto;
+    width: fit-content;
+}
+
+button {
+    display: block;
+    height: 30px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    box-shadow: -1px 1px 3px grey;
+    color: white;
+}
+
+#copyPasswordBtn {
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid transparent;
+}
+
+.copyPasswordBtn {
+    background: lightgrey;
+}
+
+#displayRatio {
+    height: 13px;
+    box-shadow: -1px 1px 3px grey, 1px -1px 3px grey;
+   /* width: 100%;*/
+}
+
+#graphArea {
+    height: 180px;
+    margin: 30px 0;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: -5px 0 5px -5px grey;
+    position: relative;
+    border-radius: 0 0 0 5px;
+    -webkit-border-radius: 0 0 0 5px;
+    -moz-border-radius: 0 0 0 5px;
+    -ms-border-radius: 0 0 0 5px;
+    -o-border-radius: 0 0 0 5px;
+}
+
+#graphArea::before {
+    content: "";
+    position: absolute;
+    box-shadow: 0 5px 5px -5px grey;
+    height: 180px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-radius: 0 0 0 5px;
+    -webkit-border-radius: 0 0 0 5px;
+    -moz-border-radius: 0 0 0 5px;
+    -ms-border-radius: 0 0 0 5px;
+    -o-border-radius: 0 0 0 5px;
+}
+
+
+
+
+
+
+.grey {
+    color: grey;
+}
+
+.black {
+    color: black;
+}
+
+.blue {
+    background: #585858;
+    /*background: rgb(13, 105, 211);*/
+}
+
+.lightgrey {
+    background: lightgrey;
+}
+
+.red {
+    background: red;
+}
+
+.yellow {
+    background: gold;
+}
+
+.green {
+    background: limegreen;
+}
+
+
+
+form > * {
+    width: 100%;
+}
+
+
+
+#approximateTotal {
+    height: 20px;
+    color: grey;
+}
+
+#test {
+    height: 55px;
+}
+
+#aA, #nN, #sS {
+    width: 25%;
+    height: 0px;
+    margin: 0 10px 0 10px;
+    background: grey;
+    color: black;
+    border: 1px solid lightgrey;
+    border-bottom: 0;
+    position: relative;
+    transition: height 0.25s ease-in-out;
+    -webkit-transition: height 0.25s ease-in-out;
+    -moz-transition: height 0.25s ease-in-out;
+    -ms-transition: height 0.25s ease-in-out;
+    -o-transition: height 0.25s ease-in-out;
+}
+
+#aA {
+    background: #0059ff;
+}
+#nN {
+    background: #02ec7f;
+}
+#sS {
+    background: #ff7b00;
+}
+
+#aA::before {
+    content: "aA";
+}
+
+#nN::before {
+    content: "nN";
+}
+
+#sS::before {
+    content: "sS";
+}
+
+#aA::before, #nN::before, #sS::before  {
+    position: absolute;
+    top: -18px;
+}
+
+#aA_percentage, #nN_percentage, #sS_percentage {
+    position: absolute;
+    top: 5px;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    font-weight: 500;
+    color: white;
+    /*color: #e4e4e4;*/
+}
+
+footer > * {
+    margin: 15px 0;
+}
+
+/*Not to be made visible to users. Only make visible in development mode. Does the background work for retrieving user input for processing/conversion and sends generated output to the output div*/
+#userApi {
+    height: 0px;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 500px) {
+    body {
+        /*max-width: 400px;*/
+        max-width: 430px;
+        margin: 40px auto;
+    }
+
+    header {
+        margin: 0 0 40px 0;
+    }
+
+    h1 {
+        font-size: 1.7em;
+    }
+
+    .message {
+        height: 40px;
+    }
+
+
+}
+
+
+@media screen and (min-width: 1000px) {
+    body {
+        /*max-width: 400px;*/
+        max-width: 900px;
+        margin: 65px auto;
+    }
+
+    main {
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    main > * {
+        width:45%;
+    }
+
+    header {
+        margin: 0 0 40px 0;
+    }
+
+    .headerButton {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.9em;
+    }
+
+    .pass
+
+    .message {
+        height: 40px;
+    }
+
+
+}
+
+
