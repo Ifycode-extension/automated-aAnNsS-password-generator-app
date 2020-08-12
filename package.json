@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Google Africa Developer Scholarship workshop exercise for building a javascript dev environment course",
   "scripts": {
-    "prestart": "node buildScripts/startMessage.js",
+    "prestart": "babel-node buildScripts/startMessage.js",
     "start": "npm-run-all --parallel open:src",
-    "open:src": "node buildScripts/srcServer.js",
+    "open:src": "babel-node buildScripts/srcServer.js",
     "localtunnel": "lt -h \"http://serverless.social\" -p 3000 --subdomain ifycode",
     "share": "npm-run-all --parallel open:src localtunnel"
   },
