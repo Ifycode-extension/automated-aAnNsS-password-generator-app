@@ -8,9 +8,14 @@
     "open:src": "babel-node buildScripts/srcServer.js",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
-    "dev": "lite-server",
     "localtunnel": "lt -h \"http://serverless.social\" -p 3000 --subdomain ifycode",
-    "share": "npm-run-all --parallel open:src localtunnel"
+    "share": "npm-run-all --parallel open:src localtunnel",
+    "clean-dist": "rimraf ./dist && mkdir dist",
+    "prebuild": "npm-run-all clean-dist lint",
+    "build": "babel-node buildScripts/build.js",
+    "postbuild": "babel-node buildScripts/distServer.js",
+    "opensrc2": "babel-node buildScripts/distServer.js",
+    "dev": "lite-server"
   },
   "author": "App by Obiagba Mary (Dev environment from Cory House's building a javascript dev environment course)",
   "license": "MIT",

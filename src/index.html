@@ -2,14 +2,22 @@
 <html>
     <head>
         <title>Automated aAnNsS Password Generator App</title>
+        <% if (htmlWebpackPlugin.options.trackJSToken) { %>
+        <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+        <script>
+          window.TrackJS && TrackJS.install({ 
+            token: '<%=htmlWebpackPlugin.options.trackJSToken%>'
+            // for more configuration options, see https://docs.trackjs.com
+          });
+        </script>    
+        <% } %>          
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-compatible" content="ie=edge">
-        <!--
-        <link rel="shortcut icon" href="./img/chicken-recipe.png">
+        <!-- remove link tag
         <link rel="stylesheet" href="./css/index.css">
         -->
-    </head>
+      </head>
     <body>
         <header>
             <h1>Automated <span class="aColor">aA</span><span class="nColor">nN</span><span class="sColor">sS</span> Password Generator App</h1>
@@ -71,6 +79,8 @@
                 <p>Google Africa Developer Scholarship 2020 Program Learner</p>
                 <p>&copy;2020</p>
         </footer>
-        <script src="bundle.js"></script>
+        <!--
+        <script src="index.js"></script>
+        -->
     </body>
 </html>
