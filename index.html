@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Automated aAnNsS Password Generator App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-compatible" content="ie=edge">
+        <link rel="shortcut icon" href="./img/chicken-recipe.png">
+        <link rel="stylesheet" href="./css/index.css">
+    </head>
+    <body>
+        <header>
+            <h1>Automated <span class="aColor">aA</span><span class="nColor">nN</span><span class="sColor">sS</span> Password Generator App</h1>
+        </header>
+        <main>
+            <section class="passwordGenerator">
+                <div id="errorBox" class="message">
+                    Success or error message displays here
+                </div>
+                <div id="errorBoxSmall" class="message">
+                    Success or error message here
+                </div>
+                <div id="passwordUpdate" class="message" >
+                    Latest update to password displays here
+                </div>
+                <div id="passwordUpdateSmall" class="message" >
+                    Latest update to password here
+                </div>
+        
+                <!---->
+                <div id="userApi" class="message">Final value displays here</div>
+                <!---->
+                <div id="test"></div>
+                
+                <form>
+                    <div class="passwordStrength">
+                        <div id="passwordCommentBox" class="grey">8 characters min | 64 characters max</div>
+                        <div id="passwordCommentBoxSmall" class="grey">8 char min | 64 char max</div>
+                        <div id="colorBox_1" class="lightgrey"></div>
+                        <div id="colorBox_2" class="lightgrey"></div>
+                        <div id="colorBox_3"  class="lightgrey"></div>
+                    </div>
+                    <input id="allowedCharactersField" name="text" type="text" placeholder="Type e.g. aAs here" maxlength="64" autocomplete="off">
+                    <div id="displayPasswordLength">Password Length: 0</div>
+                    <input id="outputField" class="outputField" name="text" type="text" placeholder="Output displays here" maxlength="64" autocomplete="off">
+                    <button id="copyPasswordBtn" class="copyPasswordBtn">Copy Password</button>
+                </form>
+                <div id="displayRatio"></div>
+            </section>
+            <section class="passwordAnalyser">
+                <article>
+                    <div id="graphArea">
+                        <div id="aA">
+                            <div id="aA_percentage">0%</div>
+                        </div>
+                        <div id="nN">
+                            <div id="nN_percentage">0%</div>
+                        </div>
+                        <div id="sS">
+                            <div id="sS_percentage">0%</div>
+                        </div>
+                    </div>
+                    <div id="approximateTotal">Note: aA% + nN% + sS% &#8773 100%</div>
+                </article>
+            </section>
+        </main>
+        <button id="collapseButton_1" class="collapseButton">How to use use the App </button>
+        <section id="howToUseTheApp" class="howToUseTheApp collapse">
+            <p>
+                Hi there! You only need the first letters from the words alphabeth,
+                number &amp; symbol to generate random characters for your password on the fly:    
+            </p>
+            <ul>
+                <li>a generates random lowercase alphabeth</li>
+                <li>A generates random uppercase alphabeth</li>
+                <li>n or N generates random number</li>
+                <li>s or S generates random symbol</li>
+            </ul>
+            <p>
+                Password length must have between 8 - 64 characters for the copy button to be enabled.
+            </p>
+        </section>
+        <button id="collapseButton_2" class="collapseButton">About aAnNsS Password Generator</button>
+        <section id="about" class="about collapse">
+            <p>
+                aAnNsS password generator app features are drawn from javascript development 
+                environment automation and Github's colorful percentage display of code that make up user's repo. 
+                The app is made up a genarator, analyser (graphical analysis of the password make up) 
+                and strength checker. Created during Google Africa Developers scholarship 2020 program
+                (learning phase 2) with knowledge from the HTML5, CSS3, (vanilla) javascript &amp; node.js courses 
+                provided.
+            </p>
+        </section>
+        <h3>Associated with: </h3>
+        <section class="associatedWith">
+            <img src="img/google.png">
+            <img src="img/Andela.png">
+            <img src="img/pluralsight.png">
+            <img src="img/gads2020.png">
+        </section>
+        <footer> 
+                <p>App Creator: Obiagba Mary</p>
+                <p>Published: August 2020</p>
+                <p>Google Africa Developer Scholarship 2020</p>
+                <p>&copy;2020</p>
+        </footer>
+       <script src="./js/newMethod.js"></script>
+    </body>
+</html>
