@@ -2,6 +2,7 @@
   "name": "automated-aannss-password-generator-app",
   "version": "1.0.0",
   "description": "Google Africa Developer Scholarship workshop exercise for building a javascript dev environment course",
+  "homepage": "https://ifycode.github.io/Automated-aAnNsS-Password-Generator-App",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
     "start": "npm-run-all --parallel open:src lint:watch dev",
@@ -15,7 +16,9 @@
     "build": "babel-node buildScripts/build.js",
     "postbuild": "babel-node buildScripts/distServer.js",
     "opensrc2": "babel-node buildScripts/distServer.js",
-    "dev": "lite-server"
+    "dev": "lite-server",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "App by Obiagba Mary (Dev environment from Cory House's building a javascript dev environment course)",
   "license": "MIT",
@@ -40,6 +43,7 @@
     "express": "4.14.0",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "^6.0.0",
+    "gh-pages": "^3.1.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "2.22.0",
     "jsdom": "9.8.0",
