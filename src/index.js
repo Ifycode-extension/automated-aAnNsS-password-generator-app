@@ -4,17 +4,13 @@ import './css/index.css';
 (function(){
 
     let allowedCharactersField = document.getElementById('allowedCharactersField');
-    let typeConversionField = document.getElementById('typeConversionField');
+    let outputField = document.getElementById('outputField');
     let passwordUpdate = document.getElementById('passwordUpdate');
+    let passwordUpdateSmall = document.getElementById('passwordUpdateSmall');
     let copyPasswordBtn = document.getElementById('copyPasswordBtn');
-
     let userApi = document.getElementById('userApi');
     let errorBox = document.getElementById('errorBox');
-
-    /*passwordUpdate.style.color = 'grey';
-    userApi.style.color = 'grey';
-    errorBox.style.color = 'grey';*/
-
+    let errorBoxSmall = document.getElementById('errorBoxSmall');
 
     /*=================== PASSWORD GENERATOR: ========================
     Treat it like a different app i.e. put it in a different function.
@@ -35,16 +31,16 @@ import './css/index.css';
         let s = Math.floor(Math.random()*symbolCharacters.length);
         let n = Math.floor(Math.random()*numbers.length);
 
-        /*=============================================================
-        if you declare let passwordCombo = allowedCharactersField.value;
+        /*===========================================================================
+        if you declare let allowedCharactersFieldValue = allowedCharactersField.value;
         outside password generator function, it won't work on user input
-        ===============================================================*/
-        let passwordCombo = allowedCharactersField.value;
-        let inputLength = passwordCombo.length;
+        ============================================================================*/
+        let allowedCharactersFieldValue = allowedCharactersField.value;
+        let inputLength = allowedCharactersFieldValue.length;
         inputLength -= 1;
 
-        let currentCharacter = passwordCombo.charAt(inputLength);
-        userApi.innerHTML = `${passwordCombo}:  `;
+        let currentCharacter = allowedCharactersFieldValue.charAt(inputLength);
+        userApi.innerHTML = `${allowedCharactersFieldValue}:  `;
 
         /*=======================================================
         create code elements for user input processing/conversion
@@ -125,23 +121,24 @@ import './css/index.css';
             /*==================================================
             Display the code elements content in the outputField
             ===================================================*/
-            let typeConversionFieldValue = `${character[0].innerHTML}${character[1].innerHTML}${character[2].innerHTML}${character[3].innerHTML}${character[4].innerHTML}${character[5].innerHTML}${character[6].innerHTML}${character[7].innerHTML}${character[8].innerHTML}${character[9].innerHTML}${character[10].innerHTML}${character[11].innerHTML}${character[12].innerHTML}${character[13].innerHTML}${character[14].innerHTML}${character[15].innerHTML}${character[16].innerHTML}${character[17].innerHTML}${character[18].innerHTML}${character[19].innerHTML}${character[20].innerHTML}${character[21].innerHTML}${character[22].innerHTML}${character[23].innerHTML}${character[24].innerHTML}${character[25].innerHTML}${character[26].innerHTML}${character[27].innerHTML}${character[28].innerHTML}${character[29].innerHTML}${character[30].innerHTML}${character[31].innerHTML}${character[32].innerHTML}${character[33].innerHTML}${character[34].innerHTML}${character[35].innerHTML}${character[36].innerHTML}${character[37].innerHTML}${character[38].innerHTML}${character[39].innerHTML}${character[40].innerHTML}${character[41].innerHTML}${character[42].innerHTML}${character[43].innerHTML}${character[44].innerHTML}${character[45].innerHTML}${character[46].innerHTML}${character[47].innerHTML}${character[48].innerHTML}${character[49].innerHTML}${character[50].innerHTML}${character[51].innerHTML}${character[52].innerHTML}${character[53].innerHTML}${character[54].innerHTML}${character[55].innerHTML}${character[56].innerHTML}${character[57].innerHTML}${character[58].innerHTML}${character[59].innerHTML}${character[60].innerHTML}${character[61].innerHTML}${character[62].innerHTML}${character[63].innerHTML}`;
-            typeConversionField.value = typeConversionFieldValue;
+            let outputFieldValue = `${character[0].innerHTML}${character[1].innerHTML}${character[2].innerHTML}${character[3].innerHTML}${character[4].innerHTML}${character[5].innerHTML}${character[6].innerHTML}${character[7].innerHTML}${character[8].innerHTML}${character[9].innerHTML}${character[10].innerHTML}${character[11].innerHTML}${character[12].innerHTML}${character[13].innerHTML}${character[14].innerHTML}${character[15].innerHTML}${character[16].innerHTML}${character[17].innerHTML}${character[18].innerHTML}${character[19].innerHTML}${character[20].innerHTML}${character[21].innerHTML}${character[22].innerHTML}${character[23].innerHTML}${character[24].innerHTML}${character[25].innerHTML}${character[26].innerHTML}${character[27].innerHTML}${character[28].innerHTML}${character[29].innerHTML}${character[30].innerHTML}${character[31].innerHTML}${character[32].innerHTML}${character[33].innerHTML}${character[34].innerHTML}${character[35].innerHTML}${character[36].innerHTML}${character[37].innerHTML}${character[38].innerHTML}${character[39].innerHTML}${character[40].innerHTML}${character[41].innerHTML}${character[42].innerHTML}${character[43].innerHTML}${character[44].innerHTML}${character[45].innerHTML}${character[46].innerHTML}${character[47].innerHTML}${character[48].innerHTML}${character[49].innerHTML}${character[50].innerHTML}${character[51].innerHTML}${character[52].innerHTML}${character[53].innerHTML}${character[54].innerHTML}${character[55].innerHTML}${character[56].innerHTML}${character[57].innerHTML}${character[58].innerHTML}${character[59].innerHTML}${character[60].innerHTML}${character[61].innerHTML}${character[62].innerHTML}${character[63].innerHTML}`;
+            outputField.value = outputFieldValue;
+
+            //input fields output these signs as &amp; &lt; &gt; - Replace with & < >
+            outputField.value = outputField.value.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
         }
 
-
-        let copyPasswordBtn = document.getElementById('copyPasswordBtn');
         function enableButton() {
             copyPasswordBtn.classList.remove('lightgrey');
-            copyPasswordBtn.classList.add('blue');
-            if (passwordCombo.length < 8) {
-                copyPasswordBtn.classList.remove('blue');
+            copyPasswordBtn.classList.add('darkgrey');
+            if (allowedCharactersFieldValue.length < 8) {
+                copyPasswordBtn.classList.remove('darkgrey');
                 copyPasswordBtn.classList.add('lightgrey');
             }
         }
 
         function disableButton() {
-            copyPasswordBtn.classList.remove('blue');
+            copyPasswordBtn.classList.remove('darkgrey');
             copyPasswordBtn.classList.add('lightgrey');
         }
 
@@ -188,36 +185,51 @@ import './css/index.css';
                 currentCharacter = symbolCharacters[s];
             }
 
-            if (passwordCombo < 8) {
+            if (allowedCharactersFieldValue.length < 8) {
                 disableButton();
             }else {
                 enableButton();
             }
 
             //Execution
-            if (!allowedCharacter[0] && !allowedCharacter[1] && !allowedCharacter[2] && !allowedCharacter[3] && !allowedCharacter[4] && !allowedCharacter[5] && passwordCombo.length === 0) {
+            if (!allowedCharacter[0] && !allowedCharacter[1] && !allowedCharacter[2] && !allowedCharacter[3] && !allowedCharacter[4] && !allowedCharacter[5] && allowedCharactersFieldValue.length === 0) {
                 errorBox.innerHTML = 'Success or error message displays here';
                 errorBox.style.color = 'grey';
+                errorBoxSmall.innerHTML = 'Success or error message here';
+                errorBoxSmall.style.color = 'grey';
                 passwordUpdate.innerHTML = 'Latest update to password displays here';
                 passwordUpdate.style.color = 'grey';
-
+                passwordUpdateSmall.innerHTML = 'Latest update to password here';
+                passwordUpdateSmall.style.color = 'grey';
                 userApi.innerHTML = 'Final value displays here';
                 userApi.style.color = 'grey';
-                typeConversionField.value = '';
+                outputField.value = '';
             }else {
                 errorBox.innerHTML = 'Ride on!';
                 errorBox.style.color = 'blue';
-                passwordUpdate.innerHTML = `<mark class="larger">${passwordCombo.charAt(inputLength)}</mark> randomly added <mark class="larger getCurrentCharacter">${currentCharacter}</mark> to your password combo`;
+                errorBoxSmall.innerHTML = 'Ride on!';
+                errorBoxSmall.style.color = 'blue';
+                passwordUpdate.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> randomly added <mark class="larger">${currentCharacter}</mark> to your password combo`;
                 passwordUpdate.style.color = '#000';
+                passwordUpdateSmall.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> added <mark class="larger">${currentCharacter}</mark> to your password`;
+                passwordUpdateSmall.style.color = '#000';
                 let larger = document.getElementsByClassName('larger');
                 larger[0].style.color = 'white';
                 larger[1].style.color = 'white';
-                larger[0].style.backgroundColor = 'black';
-                larger[1].style.backgroundColor = 'black';
+                larger[2].style.color = 'white';
+                larger[3].style.color = 'white';
+                larger[0].style.backgroundColor = '#222';
+                larger[1].style.backgroundColor = '#222';
+                larger[2].style.backgroundColor = '#222';
+                larger[3].style.backgroundColor = '#222';
                 larger[0].style.padding = '0 4px';
                 larger[1].style.padding = '2px';
+                larger[2].style.padding = '0 4px';
+                larger[3].style.padding = '2px';
                 larger[0].style.fontSize = '1.1em';
                 larger[1].style.fontSize = '1.1em';
+                larger[2].style.fontSize = '1.1em';
+                larger[3].style.fontSize = '1.1em';
                 userApi.style.color = 'black';
                 allowedCharactersField.addEventListener('keyup', displayLogic);
             }
@@ -234,16 +246,16 @@ import './css/index.css';
 
     function passwordAnalyser() {
 
-        let passwordCombo = allowedCharactersField.value;
+        let allowedCharactersFieldValue = allowedCharactersField.value;
         let displayPasswordLength = document.getElementById('displayPasswordLength');
-        displayPasswordLength.innerHTML = `Password Length: ${passwordCombo.length}`;
+        displayPasswordLength.innerHTML = `Password Length: ${allowedCharactersFieldValue.length}`;
 
         //calculate for a & A
         let aA = document.getElementById('aA');
         let aA_percentage = document.getElementById('aA_percentage');
-        let a_Total = passwordCombo.split('a').length - 1;
-        let A_Total = passwordCombo.split('A').length - 1;
-        let derived_aA_percentage = ((a_Total+A_Total)/passwordCombo.length)*100;
+        let a_Total = allowedCharactersFieldValue.split('a').length - 1;
+        let A_Total = allowedCharactersFieldValue.split('A').length - 1;
+        let derived_aA_percentage = ((a_Total+A_Total)/allowedCharactersFieldValue.length)*100;
         /*=======================================================================
         exponential equation calculation: 'e1' & 'e-1' for 1 decimal place, 'e2'
         & 'e-2' for 2 decimal places etc. I'm using 1 decimal place for this app.
@@ -255,19 +267,19 @@ import './css/index.css';
         //calculate for n & N
         let nN = document.getElementById('nN');
         let nN_percentage = document.getElementById('nN_percentage');
-        let n_Total = passwordCombo.split('n').length - 1;
-        let N_Total = passwordCombo.split('N').length - 1;
-        let derived_nN_percentage = ((n_Total+N_Total)/passwordCombo.length)*100;
+        let n_Total = allowedCharactersFieldValue.split('n').length - 1;
+        let N_Total = allowedCharactersFieldValue.split('N').length - 1;
+        let derived_nN_percentage = ((n_Total+N_Total)/allowedCharactersFieldValue.length)*100;
         let nN_to_1_decimalplace = Number(Math.round(derived_nN_percentage + 'e1') + 'e-1');
         nN_percentage.innerHTML = `${nN_to_1_decimalplace}%`;
         nN.style.height = `${nN_to_1_decimalplace}%`;
 
-
+        //calculate for s & S
         let sS = document.getElementById('sS');
         let sS_percentage = document.getElementById('sS_percentage');
-        let s_Total = passwordCombo.split('s').length - 1;
-        let S_Total = passwordCombo.split('S').length - 1;
-        let derived_sS_percentage = ((s_Total+S_Total)/passwordCombo.length)*100;
+        let s_Total = allowedCharactersFieldValue.split('s').length - 1;
+        let S_Total = allowedCharactersFieldValue.split('S').length - 1;
+        let derived_sS_percentage = ((s_Total+S_Total)/allowedCharactersFieldValue.length)*100;
         let sS_to_1_decimalplace = Number(Math.round(derived_sS_percentage + 'e1') + 'e-1');
         sS_percentage.innerHTML = `${sS_to_1_decimalplace}%`;
         sS.style.height = `${sS_to_1_decimalplace}%`;
@@ -281,7 +293,7 @@ import './css/index.css';
         approximateTotal.innerHTML = 'Note: aA% + nN% + sS% &#8773 100%';
         approximateTotal.style.color = 'black';
 
-        if (passwordCombo.length === 0) {
+        if (allowedCharactersFieldValue.length === 0) {
             aA.style.height = '0px';
             nN.style.height = '0px';
             sS.style.height = '0px';
@@ -299,111 +311,108 @@ import './css/index.css';
 
     function passwordStrength() {
 
-        //let outputFieldValue = typeConversionField.value;
-        let passwordCombo = allowedCharactersField.value;
+        let allowedCharactersFieldValue = allowedCharactersField.value;
         let strength = 0;
 
         let passwordCommentBox = document.getElementById('passwordCommentBox');
+        let passwordCommentBoxSmall = document.getElementById('passwordCommentBoxSmall');
 
-        if (passwordCombo.length < 1) {
+        if (allowedCharactersFieldValue.length < 1) {
             passwordCommentBox.innerHTML = '8 characters min | 64 characters max';
             passwordCommentBox.classList.remove('black');
             passwordCommentBox.classList.add('grey');
+            passwordCommentBoxSmall.innerHTML = '8 char min | 64 char max';
+            passwordCommentBoxSmall.classList.remove('black');
+            passwordCommentBoxSmall.classList.add('grey');
         }else {
             passwordCommentBox.innerHTML = 'Too short';
             passwordCommentBox.classList.add('black');
+            passwordCommentBoxSmall.innerHTML = 'Too short';
+            passwordCommentBoxSmall.classList.add('black');
         }
 
         //whatever you type in first: whether its an alphabeth, number or symbol password strength increases by 1
-        if (passwordCombo.length > 0) strength += 1;
+        if (allowedCharactersFieldValue.length > 0) strength += 1;
 
         //increase length by 1 for a mix of alphabeth and number
-        if (passwordCombo.match(/([a,A])/) && passwordCombo.match(/([n,N])/)) strength += 1;
+        if (allowedCharactersFieldValue.match(/([a,A])/) && allowedCharactersFieldValue.match(/([n,N])/)) strength += 1;
 
         //increase length by 1 for a mix of alphabeth and symbol
-        if (passwordCombo.match(/([a,A])/) && passwordCombo.match(/([s,S])/)) strength += 1;
+        if (allowedCharactersFieldValue.match(/([a,A])/) && allowedCharactersFieldValue.match(/([s,S])/)) strength += 1;
 
         //increase length by 1 for a mix of lowercase and uppercase alphabeths
-        if (passwordCombo.match(/([a])/) && passwordCombo.match(/([A])/)) strength += 1;
+        if (allowedCharactersFieldValue.match(/([a])/) && allowedCharactersFieldValue.match(/([A])/)) strength += 1;
 
         //increase length by 1 for a mix of number and symbol
-        if (passwordCombo.match(/([n,N])/) && passwordCombo.match(/([s,S])/)) strength += 1;
+        if (allowedCharactersFieldValue.match(/([n,N])/) && allowedCharactersFieldValue.match(/([s,S])/)) strength += 1;
 
         let colorBox_1 = document.getElementById('colorBox_1');
         let colorBox_2 = document.getElementById('colorBox_2');
         let colorBox_3 = document.getElementById('colorBox_3');
 
         function noStrengthColors(){
-            colorBox_1.classList.remove('red', 'yellow', 'green');
-            colorBox_2.classList.remove('red', 'yellow', 'green');
-            colorBox_3.classList.remove('red', 'yellow', 'green');
+            colorBox_1.classList.remove('weak', 'fair', 'strong');
+            colorBox_2.classList.remove('weak', 'fair', 'strong');
+            colorBox_3.classList.remove('weak', 'fair', 'strong');
         }
 
         function weakPasswordColors(){
-            colorBox_1.classList.remove('yellow');
-            colorBox_1.classList.add('red');
-            colorBox_2.classList.remove('yellow');
+            colorBox_1.classList.remove('fair');
+            colorBox_1.classList.add('weak');
+            colorBox_2.classList.remove('fair');
             colorBox_2.classList.add('lightgrey');
         }
 
         function fairPasswordColors(){
-            colorBox_1.classList.add('yellow');
-            colorBox_2.classList.add('yellow');
+            colorBox_1.classList.add('fair');
+            colorBox_2.classList.add('fair');
             colorBox_3.classList.add('lightgrey');
-            colorBox_1.classList.remove('green');
-            colorBox_2.classList.remove('green');
-            colorBox_3.classList.remove('green');
+            colorBox_1.classList.remove('strong');
+            colorBox_2.classList.remove('strong');
+            colorBox_3.classList.remove('strong');
         }
 
         function strongPasswordColors() {
-            colorBox_1.classList.add('green');
-            colorBox_2.classList.add('green');
-            colorBox_3.classList.add('green');
+            colorBox_1.classList.add('strong');
+            colorBox_2.classList.add('strong');
+            colorBox_3.classList.add('strong');
         }
 
         if (strength < 1) {
            noStrengthColors();
-        }else if (strength === 1 && passwordCombo.length < 8) {
+        }else if (strength === 1 && allowedCharactersFieldValue.length < 8) {
             passwordCommentBox.innerHTML = 'Weak - Too short';
+            passwordCommentBoxSmall.innerHTML = 'Weak - Too short';
             weakPasswordColors();
-        }else if (strength === 1 && passwordCombo.length >= 8) {
+        }else if (strength === 1 && allowedCharactersFieldValue.length >= 8) {
             passwordCommentBox.innerHTML = 'Weak Password';
+            passwordCommentBoxSmall.innerHTML = 'Weak Password';
             weakPasswordColors()
-        }else if (strength === 2 && passwordCombo.length < 8) {
+        }else if (strength === 2 && allowedCharactersFieldValue.length < 8) {
             passwordCommentBox.innerHTML = 'Fair - Too short';
+            passwordCommentBoxSmall.innerHTML = 'Fair - Too short';
             fairPasswordColors();
-        }else if (strength === 2 && passwordCombo.length >= 8) {
+        }else if (strength === 2 && allowedCharactersFieldValue.length >= 8) {
             passwordCommentBox.innerHTML = 'Fair Password';
+            passwordCommentBoxSmall.innerHTML = 'Fair Password';
             fairPasswordColors();
-        }else if (strength >= 3 && passwordCombo.length < 8) {
+        }else if (strength >= 3 && allowedCharactersFieldValue.length < 8) {
             passwordCommentBox.innerHTML = 'Strong - Too short';
+            passwordCommentBoxSmall.innerHTML = 'Strong - Too short';
             strongPasswordColors();
         }else {
             passwordCommentBox.innerHTML = 'Strong Password';
+            passwordCommentBoxSmall.innerHTML = 'Strong Password';
             strongPasswordColors();
         }
     }
 
-    /*function disableOrEnableButton() {
-        let passwordCombo = allowedCharactersField.value;
-        copyPasswordBtn.classList.remove('lightgrey');
-        copyPasswordBtn.classList.add('blue');
-        if (passwordCombo.length < 8) {
-            copyPasswordBtn.classList.remove('blue');
-            copyPasswordBtn.classList.add('lightgrey');
-        }/*else {
-            copyPasswordBtn.classList.remove('lightgrey');
-            copyPasswordBtn.classList.add('blue');
-        }*\/
-    }*/
-
+    //call the three functions on input
     allowedCharactersField.addEventListener('input', function() {
         passwordGenerator();
         passwordAnalyser();
         passwordStrength();
-        //disableOrEnableButton();
     });
-
 
     /*==========================================================
         Disable all other keys apart from a A n N s S. I'm using
@@ -412,23 +421,40 @@ import './css/index.css';
     =============================================================*/
 
     let anAllowedCharacters = /([a,A,n,N,s,S])/;
+    //let comma =
     allowedCharactersField.addEventListener('keypress', event => {
         if(!anAllowedCharacters.test(event.key)) {
             event.preventDefault();
             errorBox.innerHTML = `Character not allowed!`;
             errorBox.style.color = 'red';
-            passwordUpdate.innerHTML = 'Type in any of these letters: aAnNsS';
+            errorBoxSmall.innerHTML = `Character not allowed!`;
+            errorBoxSmall.style.color = 'red';
+            passwordUpdate.innerHTML = 'Type in any of these alphabeths: aAnNsS';
             passwordUpdate.style.color = 'black';
+            passwordUpdateSmall.innerHTML = 'Type in any of these: aAnNsS';
+            passwordUpdateSmall.style.color = 'black';
         }
+
+        if(','.test(event.key)) {
+          event.preventDefault();
+          errorBox.innerHTML = `Character not allowed!`;
+          errorBox.style.color = 'red';
+          errorBoxSmall.innerHTML = `Character not allowed!`;
+          errorBoxSmall.style.color = 'red';
+          passwordUpdate.innerHTML = 'Type in any of these alphabeths: aAnNsS';
+          passwordUpdate.style.color = 'black';
+          passwordUpdateSmall.innerHTML = 'Type in any of these: aAnNsS';
+          passwordUpdateSmall.style.color = 'black';
+      }
     });
 
     //copy password
     function copyPassword() {
-        let passwordCombo = allowedCharactersField.value;
+        let allowedCharactersFieldValue = allowedCharactersField.value;
 
-        if (passwordCombo.length >= 8) {
-            typeConversionField.select();
-            typeConversionField.setSelectionRange(0, 99999);
+        if (allowedCharactersFieldValue.length >= 8) {
+            outputField.select();
+            outputField.setSelectionRange(0, 99999);
             document.execCommand('copy');
         }
     }
@@ -439,31 +465,40 @@ import './css/index.css';
         copyPassword();
     });
 
+    //collapse buttons
+    let collapseButton_1 = document.getElementById('collapseButton_1');
+    let howToUseTheApp = document.getElementById('howToUseTheApp');
+    let toggle = 0;
+    collapseButton_1.addEventListener('click', function () {
+        toggle++;
+        if (toggle === 1) {
+            howToUseTheApp.classList.remove('collapse');
+            howToUseTheApp.classList.add('expand');
+        }
+
+        if (toggle === 2) {
+            howToUseTheApp.classList.remove('expand');
+            howToUseTheApp.classList.add('collapse');
+            toggle = 1;
+            toggle--;
+        }
+    });
+
+    let collapseButton_2 = document.getElementById('collapseButton_2');
+    let about = document.getElementById('about');
+    let toggle2 = 0;
+    collapseButton_2.addEventListener('click', function () {
+        toggle2++;
+        if (toggle2 === 1) {
+            about.classList.remove('collapse');
+            about.classList.add('expand');
+        }
+
+        if (toggle2 === 2) {
+            about.classList.remove('expand');
+            about.classList.add('collapse');
+            toggle2 = 1;
+            toggle2--;
+        }
+    });
 }());
-
-
- /* Original calculation for password analyser:
-
-let calculated_sS_percentage = Math.round(((s_Total+S_Total)/passwordCombo.length)*100);
-sS_percentage.innerHTML = `${calculated_sS_percentage}%`;
-sS.style.height = `${calculated_sS_percentage}%`;
-
-
-let calculated_aA_percentage = Math.round(((a_Total+A_Total)/passwordCombo.length)*100);
-
-aA_percentage.innerHTML = `${calculated_aA_percentage}%`;
-aA.style.height = `${calculated_aA_percentage}%`;
-
-let calculated_nN_percentage = Math.round(((n_Total+N_Total)/passwordCombo.length)*100);
-nN_percentage.innerHTML = `${calculated_nN_percentage}%`;
-nN.style.height = `${calculated_nN_percentage}%`;
-
-//let add_aA_nN = calculated_aA_percentage + calculated_nN_percentage;
-
- */
-
- /*let add_aA_nN_sS = aA_to_1_decimalplace + nN_to_1_decimalplace + sS_to_1_decimalplace;
-
-        let total = document.getElementById('total');
-        total.innerHTML = `aA% + nN% + sS% = ${add_aA_nN_sS}%`;
-        */

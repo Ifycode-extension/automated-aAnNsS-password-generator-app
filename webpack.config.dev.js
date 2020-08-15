@@ -24,8 +24,9 @@ export default {
   module: {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.css$/, loaders: ['style','css']}
+      {test: /\.css$/, loaders: ['style','css']},
+      /*trying to get images to load... Not working*/
+      {test: /\.(gif|svg|jpg|png)$/, loader: 'file-loader'}
     ]
   }
 }
-
