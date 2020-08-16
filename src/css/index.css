@@ -1,3 +1,18 @@
+/*=============================================
+  Author: Obiagba Mary
+  Published: August 2020
+  Track: Mobile Web Specialist Track.
+  About: Google Africa Developer Scholarship
+  2020 workshop exercise for building a javascript
+  dev environment course by Cory House.
+
+  Note: For Lite-server to watch files while in
+  development mode, add CSS & JS in index.html via
+  link & script tags respectively(to be removed in
+  production). Also comment out css import in the
+  js file (add back in production).
+===============================================*/
+
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&display=swap');
 
 * {
@@ -83,7 +98,7 @@ main > * {
 }
 
 /*======================
-userApi not made visible 
+userApi not made visible
 in production mode
 =======================*/
 #userApi {
@@ -184,7 +199,7 @@ button {
   content: "";
   position: absolute;
   box-shadow: 0 5px 5px -5px grey;
-  height: 180px; 
+  height: 180px;
   width: 100%;
   bottom: 0;
   left: 0;
@@ -272,7 +287,7 @@ button {
 
 .howToUseTheApp li {
   list-style-position: inside;
-  list-style-type: square; 
+  list-style-type: square;
 }
 
 .collapse {
@@ -300,6 +315,7 @@ h3 {
 }
 .associatedWith > img {
   max-width: 23.5%;
+  height: auto;
 }
 
 footer {
@@ -349,19 +365,19 @@ footer > * {
   #errorBox {
       display: block;
   }
-  
+
   #passwordUpdate {
       display: block;
   }
-  
+
   #errorBoxSmall {
       display: none;
   }
-  
+
   #passwordUpdateSmall {
       display: none;
   }
-  
+
   #passwordCommentBox {
       height: unset;
       width: unset;
@@ -378,7 +394,7 @@ footer > * {
 
   footer > * {
       font-size: 1em;
-  } 
+  }
 }
 
 
@@ -386,19 +402,19 @@ footer > * {
   body {
       max-width: 430px;
       margin: 50px auto;
-  } 
-  
+  }
+
   header {
       margin: 0 0 50px 0;
   }
-  
+
   h1 {
       font-size: 1.7em;
   }
 
   .message {
       height: 40px;
-  }   
+  }
 }
 
 
@@ -406,7 +422,7 @@ footer > * {
   body {
       max-width: 900px;
       margin: 65px auto;
-  } 
+  }
 
   main {
       padding: 20px 0;
@@ -418,11 +434,11 @@ footer > * {
   main > * {
       width:45%;
   }
-  
+
   header {
       margin: 0 0 65px 0;
   }
-  
+
   h1 {
       font-size: 1.9em;
   }
@@ -433,7 +449,7 @@ footer > * {
 
   .associatedWith > img {
       max-width: 100%;
-  } 
+  }
 }
 
 

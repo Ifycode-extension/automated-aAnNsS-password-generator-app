@@ -6,14 +6,13 @@
   2020 workshop exercise for building a javascript
   dev environment course by Cory House.
 
-  Note: For Lite-server to watch files while in
-  development mode, add CSS & JS in index.html via
-  link & script tags respectively(to be removed in
-  production). Also comment out css import in the
-  js file (add back in production).
+  Found that event key dosen't work on mobile
+  devices. I've updated index.js with another
+  method that should work on other devices. Kept
+  this here for reference purpose.
 ===============================================*/
 
-import './css/index.css';
+//import './css/index.css';
 
 (function(){
 
@@ -54,7 +53,7 @@ import './css/index.css';
         inputLength -= 1;
 
         let currentCharacter = allowedCharactersFieldValue.charAt(inputLength);
-        userApi.innerHTML = `${allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\]\\,{,}, , ])/g, '').replace(/([0-9])/g, '')}:  `;
+        userApi.innerHTML = `${allowedCharactersFieldValue}:  `;
 
         /*=======================================================
         create code elements for user input processing/conversion
@@ -64,49 +63,9 @@ import './css/index.css';
             userApi.appendChild(code);
         }
 
-        let allowedCharacter = [
-            currentCharacter === 'a',
-            currentCharacter === 'A',
-            currentCharacter === 'n',
-            currentCharacter === 'N',
-            currentCharacter === 's',
-            currentCharacter === 'S',
-            currentCharacter.match(/([a,A,n,N,s,S])/),
-            currentCharacter === ','
-        ]
-
-        function rideOn() {
-            errorBox.innerHTML = 'Ride on!';
-            errorBox.style.color = 'blue';
-            errorBoxSmall.innerHTML = 'Ride on!';
-            errorBoxSmall.style.color = 'blue';
-            passwordUpdate.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> randomly added <mark class="larger">${currentCharacter}</mark> to your password combo`;
-            passwordUpdate.style.color = '#000';
-            passwordUpdateSmall.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> added <mark class="larger">${currentCharacter}</mark> to your password`;
-            passwordUpdateSmall.style.color = 'black';
-            let larger = document.getElementsByClassName('larger');
-            larger[0].style.color = 'white';
-            larger[1].style.color = 'white';
-            larger[2].style.color = 'white';
-            larger[3].style.color = 'white';
-            larger[0].style.backgroundColor = '#222';
-            larger[1].style.backgroundColor = '#222';
-            larger[2].style.backgroundColor = '#222';
-            larger[3].style.backgroundColor = '#222';
-            larger[0].style.padding = '0 4px';
-            larger[1].style.padding = '2px';
-            larger[2].style.padding = '0 4px';
-            larger[3].style.padding = '2px';
-            larger[0].style.fontSize = '1.1em';
-            larger[1].style.fontSize = '1.1em';
-            larger[2].style.fontSize = '1.1em';
-            larger[3].style.fontSize = '1.1em';
-        }
-
 
         function displayLogic() {
 
-            allowedCharactersField.value = allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\]\\,{,}, , ])/g, '').replace(/([0-9])/g, '');
             /*====================================================================
             Use inputLength to find actual array index number of the code elements
             and store inside arr variable (technically, inputLength and arr are one
@@ -123,20 +82,6 @@ import './css/index.css';
             =================================================================================*/
             let character = document.getElementsByTagName('code');
             character[arr].innerHTML = `${currentCharacter}`;
-
-            if (currentCharacter === '' && allowedCharactersFieldValue.length > 0) {
-                //character[arr].innerHTML = '';
-                errorBox.innerHTML = `Character not allowed!`;
-                errorBox.style.color = 'red';
-                errorBoxSmall.innerHTML = `Character not allowed!`;
-                errorBoxSmall.style.color = 'red';
-                passwordUpdateSmall.innerHTML = 'Type in any of these: aAnNsS';
-                passwordUpdateSmall.style.color = 'black';
-                passwordUpdate.innerHTML = 'Type in any of these alphabeths: aAnNsS';
-                passwordUpdate.style.color = 'black';
-            }else {
-                rideOn();
-            }
 
             /*==============================================
             The goal is to get both user input and generated
@@ -182,8 +127,8 @@ import './css/index.css';
             character[aRR].innerHTML = '';
 
             if (arr < 0 && inputLength < 0) {
-                aRR -= 1;
-                character[aRR].innerHTML = '';
+            aRR -= 1;
+            character[aRR].innerHTML = '';
             }
 
             /*==================================================
@@ -194,28 +139,8 @@ import './css/index.css';
 
             //input fields output these signs as &amp; &lt; &gt; - Replace with & < >
             outputField.value = outputField.value.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-
-            /*-----------------------------------------------------------------------------
-            Trying to correct a bug with the next 14 lines
-            ----------------| correction start |------------------------------------------*/
-            let lastOutputFieldCharacter = outputField.value.charAt(aRR);
-            /*
-            console.log(lastOutputFieldCharacter);
-            console.log(outputField.value.indexOf(lastOutputFieldCharacter));
-            console.log(outputField.value.length);
-            console.log(allowedCharactersField.value.length);
-            */
-            if (outputField.value.length > allowedCharactersField.value.length) {
-                outputField.value = outputField.value.replace(lastOutputFieldCharacter, '');
-                /*
-                aRR -= 1;
-                console.log(character[aRR]);
-                */
-            }
-            //----------------| correction end |------------------------------------------
         }
 
-        //functions for copy button (enable and disable)
         function enableButton() {
             copyPasswordBtn.classList.remove('lightgrey');
             copyPasswordBtn.classList.add('darkgrey');
@@ -229,6 +154,17 @@ import './css/index.css';
             copyPasswordBtn.classList.remove('darkgrey');
             copyPasswordBtn.classList.add('lightgrey');
         }
+
+
+
+        let allowedCharacter = [
+            currentCharacter === 'a',
+            currentCharacter === 'A',
+            currentCharacter === 'n',
+            currentCharacter === 'N',
+            currentCharacter === 's',
+            currentCharacter === 'S'
+        ]
 
         function automate() {
             /*===========================================================
@@ -262,18 +198,6 @@ import './css/index.css';
                 currentCharacter = symbolCharacters[s];
             }
 
-            if (!allowedCharacter[6]) {
-                currentCharacter = '';
-                allowedCharactersField.value = allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\]\\,{,}, , ])/g, '').replace(/([0-9])/g, '');
-            }
-
-            //Specially taking care of troublesome comma (,)
-            if (allowedCharacter[7]) {
-                currentCharacter = '';
-                allowedCharactersField.value = allowedCharactersField.value.replace(',', '');
-            }
-
-            //call button functions
             if (allowedCharactersFieldValue.length < 8) {
                 disableButton();
             }else {
@@ -294,12 +218,32 @@ import './css/index.css';
                 userApi.style.color = 'grey';
                 outputField.value = '';
             }else {
-                rideOn();
+                errorBox.innerHTML = 'Ride on!';
+                errorBox.style.color = 'blue';
+                errorBoxSmall.innerHTML = 'Ride on!';
+                errorBoxSmall.style.color = 'blue';
+                passwordUpdate.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> randomly added <mark class="larger">${currentCharacter}</mark> to your password combo`;
+                passwordUpdate.style.color = '#000';
+                passwordUpdateSmall.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> added <mark class="larger">${currentCharacter}</mark> to your password`;
+                passwordUpdateSmall.style.color = '#000';
+                let larger = document.getElementsByClassName('larger');
+                larger[0].style.color = 'white';
+                larger[1].style.color = 'white';
+                larger[2].style.color = 'white';
+                larger[3].style.color = 'white';
+                larger[0].style.backgroundColor = '#222';
+                larger[1].style.backgroundColor = '#222';
+                larger[2].style.backgroundColor = '#222';
+                larger[3].style.backgroundColor = '#222';
+                larger[0].style.padding = '0 4px';
+                larger[1].style.padding = '2px';
+                larger[2].style.padding = '0 4px';
+                larger[3].style.padding = '2px';
+                larger[0].style.fontSize = '1.1em';
+                larger[1].style.fontSize = '1.1em';
+                larger[2].style.fontSize = '1.1em';
+                larger[3].style.fontSize = '1.1em';
                 userApi.style.color = 'black';
-                if (currentCharacter === '') {
-                    passwordUpdate.innerHTML = '';
-                    passwordUpdateSmall.innerHTML = '';
-                }
                 allowedCharactersField.addEventListener('keyup', displayLogic);
             }
         }
@@ -322,9 +266,6 @@ import './css/index.css';
         //calculate for a & A
         let aA = document.getElementById('aA');
         let aA_percentage = document.getElementById('aA_percentage');
-        /*==========================================
-        Get the number of a and A in the input field
-        ===========================================*/
         let a_Total = allowedCharactersFieldValue.split('a').length - 1;
         let A_Total = allowedCharactersFieldValue.split('A').length - 1;
         let derived_aA_percentage = ((a_Total+A_Total)/allowedCharactersFieldValue.length)*100;
@@ -484,6 +425,40 @@ import './css/index.css';
         passwordGenerator();
         passwordAnalyser();
         passwordStrength();
+    });
+
+    /*==========================================================
+        Disable all other keys apart from a A n N s S. I'm using
+        keypress event so that some other keys like the shift key
+        and the backspace dosen't stop working.
+    =============================================================*/
+
+    let anAllowedCharacters = /([a,A,n,N,s,S])/;
+    //let comma =
+    allowedCharactersField.addEventListener('keypress', event => {
+        if(!anAllowedCharacters.test(event.key)) {
+            event.preventDefault();
+            errorBox.innerHTML = `Character not allowed!`;
+            errorBox.style.color = 'red';
+            errorBoxSmall.innerHTML = `Character not allowed!`;
+            errorBoxSmall.style.color = 'red';
+            passwordUpdate.innerHTML = 'Type in any of these alphabeths: aAnNsS';
+            passwordUpdate.style.color = 'black';
+            passwordUpdateSmall.innerHTML = 'Type in any of these: aAnNsS';
+            passwordUpdateSmall.style.color = 'black';
+        }
+
+        if(','.test(event.key)) {
+          event.preventDefault();
+          errorBox.innerHTML = `Character not allowed!`;
+          errorBox.style.color = 'red';
+          errorBoxSmall.innerHTML = `Character not allowed!`;
+          errorBoxSmall.style.color = 'red';
+          passwordUpdate.innerHTML = 'Type in any of these alphabeths: aAnNsS';
+          passwordUpdate.style.color = 'black';
+          passwordUpdateSmall.innerHTML = 'Type in any of these: aAnNsS';
+          passwordUpdateSmall.style.color = 'black';
+      }
     });
 
     //copy password
