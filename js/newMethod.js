@@ -1,3 +1,12 @@
+/*=============================================
+  Author: Obiagba Mary
+  Published: August 2020
+  Track: Mobile Web Specialist Track.
+  About: Google Africa Developer Scholarship
+  2020 workshop exercise for building a javascript
+  dev environment course by Cory House.
+===============================================*/
+
 'use strict';
 
 (function(){
@@ -166,18 +175,11 @@
             aRR += 1; 
             character[aRR].innerHTML = ''; 
 
-            if (outputField.value.length > allowedCharactersField.value.length) {
-               console.log(character[aRR].innerHTML);
-            }
-
             if (arr < 0 && inputLength < 0) {
                 aRR -= 1;
                 character[aRR].innerHTML = '';
             }
 
-
-            
-           
             /*==================================================
             Display the code elements content in the outputField
             ===================================================*/
@@ -197,6 +199,7 @@
             console.log(outputField.value.length);
             console.log(allowedCharactersField.value.length);
             */
+
             if (outputField.value.length > allowedCharactersField.value.length) {
                 outputField.value = outputField.value.replace(lastOutputFieldCharacter, '');
                 /*

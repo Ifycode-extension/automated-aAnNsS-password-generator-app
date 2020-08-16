@@ -57,7 +57,45 @@
             let code = document.createElement("code");
             userApi.appendChild(code);   
         }
-        
+
+        let allowedCharacter = [
+            currentCharacter === 'a',
+            currentCharacter === 'A',
+            currentCharacter === 'n',
+            currentCharacter === 'N',
+            currentCharacter === 's',
+            currentCharacter === 'S' 
+        ]
+
+        function rideOn() {
+            errorBox.innerHTML = 'Ride on!';
+            errorBox.style.color = 'blue';
+            errorBoxSmall.innerHTML = 'Ride on!';
+            errorBoxSmall.style.color = 'blue';
+            test.innerHTML = "Ride on!";
+            test.style.color = 'blue';
+            passwordUpdate.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> randomly added <mark class="larger">${currentCharacter}</mark> to your password combo`;
+            passwordUpdate.style.color = '#000';
+            passwordUpdateSmall.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> added <mark class="larger">${currentCharacter}</mark> to your password`;
+            passwordUpdateSmall.style.color = 'black';
+            let larger = document.getElementsByClassName('larger');
+            larger[0].style.color = 'white';
+            larger[1].style.color = 'white';
+            larger[2].style.color = 'white';
+            larger[3].style.color = 'white';
+            larger[0].style.backgroundColor = '#222';
+            larger[1].style.backgroundColor = '#222';
+            larger[2].style.backgroundColor = '#222';
+            larger[3].style.backgroundColor = '#222';
+            larger[0].style.padding = '0 4px';
+            larger[1].style.padding = '2px';
+            larger[2].style.padding = '0 4px';
+            larger[3].style.padding = '2px';
+            larger[0].style.fontSize = '1.1em';
+            larger[1].style.fontSize = '1.1em';
+            larger[2].style.fontSize = '1.1em';
+            larger[3].style.fontSize = '1.1em';    
+        } 
         
         function displayLogic() {
             
@@ -78,6 +116,36 @@
             let character = document.getElementsByTagName('code');
             character[arr].innerHTML = `${currentCharacter}`;
 
+            
+            let test = document.getElementById('test');
+            if (currentCharacter === '' && allowedCharactersFieldValue.length > 0) {
+                //character[arr].innerHTML = '';
+                errorBox.innerHTML = `Character not allowed!`;
+                errorBox.style.color = 'red';
+                errorBoxSmall.innerHTML = `Character not allowed!`;
+                errorBoxSmall.style.color = 'red';
+                test.innerHTML = "Character not allowed!";
+                test.style.color = 'red';
+                passwordUpdateSmall.innerHTML = 'Type in any of these: aAnNsS';
+                passwordUpdateSmall.style.color = 'black';
+                passwordUpdate.innerHTML = 'Type in any of these alphabeths: aAnNsS';
+                passwordUpdate.style.color = 'black';
+                //allowedCharactersField.value = allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\,{,}, , ])/g, '').replace(/([0-9])/g, '');
+                allowedCharactersField.value = allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\]\\,{,}, , ])/g, '').replace(/([0-9])/g, '');
+            }else {
+                rideOn();
+            }
+
+                      
+            //gets the first position/index of occurence of 'a'
+            //let indexOf_currentCharacter = allowedCharactersField.value.indexOf(currentCharacter);
+            //console.log(indexOf_currentCharacter);
+            let indexOf_a = allowedCharactersField.value.indexOf('h');
+            console.log(indexOf_a);
+            console.log(`InputLength: ${inputLength}`);
+            console.log(`AlChaLength: ${allowedCharactersFieldValue.length}`);
+            
+            
             /*==============================================
             The goal is to get both user input and generated 
             password to be displayed in the format described
@@ -121,6 +189,7 @@
             aRR += 1; 
             character[aRR].innerHTML = ''; 
 
+            
             if (arr < 0 && inputLength < 0) {
             aRR -= 1;
             character[aRR].innerHTML = '';
@@ -134,6 +203,16 @@
             
             //input fields output these signs as &amp; &lt; &gt; - Replace with & < >
             outputField.value = outputField.value.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+        
+            console.log(`outputFld: ${outputField.value.length}`);
+            //console.log(aRR);
+            //if (indexOf_a < inputLength) {
+                //clean it up here with... allowedCharactersField.value = 
+               // character[aRR].innerHTML = ''; 
+                //let outputChar = outputFieldValue.charAt(arr);
+                //outputChar = '';
+            //}
+
         }
 
         function enableButton() {
@@ -149,17 +228,6 @@
             copyPasswordBtn.classList.remove('darkgrey');
             copyPasswordBtn.classList.add('lightgrey');
         }
-        
-
-    
-        let allowedCharacter = [
-            currentCharacter === 'a',
-            currentCharacter === 'A',
-            currentCharacter === 'n',
-            currentCharacter === 'N',
-            currentCharacter === 's',
-            currentCharacter === 'S' 
-        ]
     
         function automate() {
             /*===========================================================
@@ -193,6 +261,10 @@
                 currentCharacter = symbolCharacters[s];
             }
 
+            if (!allowedCharacter[0] && !allowedCharacter[1] && !allowedCharacter[2] && !allowedCharacter[3] && !allowedCharacter[4] && !allowedCharacter[5]) { 
+                currentCharacter = '';
+            }
+
             if (allowedCharactersFieldValue.length < 8) {
                 disableButton();
             }else {
@@ -205,6 +277,8 @@
                 errorBox.style.color = 'grey';
                 errorBoxSmall.innerHTML = 'Success or error message here';
                 errorBoxSmall.style.color = 'grey';
+                test.innerHTML = "Success or error message here";
+                test.style.color = 'grey';
                 passwordUpdate.innerHTML = 'Latest update to password displays here';
                 passwordUpdate.style.color = 'grey';
                 passwordUpdateSmall.innerHTML = 'Latest update to password here';
@@ -213,32 +287,12 @@
                 userApi.style.color = 'grey';
                 outputField.value = '';
             }else {
-                errorBox.innerHTML = 'Ride on!';
-                errorBox.style.color = 'blue';
-                errorBoxSmall.innerHTML = 'Ride on!';
-                errorBoxSmall.style.color = 'blue';
-                passwordUpdate.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> randomly added <mark class="larger">${currentCharacter}</mark> to your password combo`;
-                passwordUpdate.style.color = '#000';
-                passwordUpdateSmall.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> added <mark class="larger">${currentCharacter}</mark> to your password`;
-                passwordUpdateSmall.style.color = '#000';
-                let larger = document.getElementsByClassName('larger');
-                larger[0].style.color = 'white';
-                larger[1].style.color = 'white';
-                larger[2].style.color = 'white';
-                larger[3].style.color = 'white';
-                larger[0].style.backgroundColor = '#222';
-                larger[1].style.backgroundColor = '#222';
-                larger[2].style.backgroundColor = '#222';
-                larger[3].style.backgroundColor = '#222';
-                larger[0].style.padding = '0 4px';
-                larger[1].style.padding = '2px';
-                larger[2].style.padding = '0 4px';
-                larger[3].style.padding = '2px';
-                larger[0].style.fontSize = '1.1em';
-                larger[1].style.fontSize = '1.1em';
-                larger[2].style.fontSize = '1.1em';
-                larger[3].style.fontSize = '1.1em';
+                rideOn();
                 userApi.style.color = 'black';
+                if (currentCharacter === '') {
+                    passwordUpdate.innerHTML = '';
+                    passwordUpdateSmall.innerHTML = '';
+                }
                 allowedCharactersField.addEventListener('keyup', displayLogic);
             }
         }
@@ -419,31 +473,10 @@
     }
 
     //call the three functions on input
-    allowedCharactersField.addEventListener('input', function() {
+    allowedCharactersField.addEventListener('input', function() {    
         passwordGenerator(); 
         passwordAnalyser();
         passwordStrength();
-    });
-    
-    /*==========================================================
-        Disable all other keys apart from a A n N s S. I'm using 
-        keypress event so that some other keys like the shift key 
-        and the backspace dosen't stop working.
-    =============================================================*/
-    
-    let anAllowedCharacters = /([a,A,n,N,s,S])/;
-    allowedCharactersField.addEventListener('keypress', event => {
-        if(!anAllowedCharacters.test(event.key)) {
-            event.preventDefault();
-            errorBox.innerHTML = `Character not allowed!`;
-            errorBox.style.color = 'red';
-            errorBoxSmall.innerHTML = `Character not allowed!`;
-            errorBoxSmall.style.color = 'red';
-            passwordUpdate.innerHTML = 'Type in any of these alphabeths: aAnNsS';
-            passwordUpdate.style.color = 'black';
-            passwordUpdateSmall.innerHTML = 'Type in any of these: aAnNsS';
-            passwordUpdateSmall.style.color = 'black';
-        }
     });
 
     //copy password
