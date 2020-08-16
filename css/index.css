@@ -1,6 +1,8 @@
+/*
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&display=swap');
+*/
 
-/*@font-face {
+@font-face {
     font-family: Josefin-Regular;
     src: url('../font/JosefinSans-Regular.ttf');
 }
@@ -8,7 +10,7 @@
 @font-face {
     font-family: Josefin-Medium;
     src: url('../font/JosefinSans-Medium.ttf');
-}*/
+}
 
 * {
     margin: 0;
@@ -91,11 +93,11 @@ main > * {
     height: 30px;
 }
 
-/*=============================
-userApi & test not made visible 
+/*======================
+userApi not made visible 
 in production mode
-==============================*/
-#userApi, #test {
+=======================*/
+#userApi {
     height: 0px;
     overflow: hidden;
 }
