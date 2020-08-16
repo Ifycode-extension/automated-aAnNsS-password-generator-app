@@ -6,7 +6,8 @@ view live on [Github Pages](https://ifycode.github.io/Automated-aAnNsS-Password-
 
 ### User Input Logic
 The image below shows an example of a 10 digit password (i.e. string with index of 0 - 9) will be generated each time the user adds to or deletes a character from the "allowedCharacters" input field in an orderly manner:
-![User Input Logic](./readmeExtension/aAnNsS-logic.png)
+
+![User Input Logic](./readmeExtension/aAnNsS-logic.PNG)
 
 When user enters or deletes characters in an orderly manner, there is no issue. When characters are not entered in an orderly manner, some [issues](https://github.com/Ifycode/Automated-aAnNsS-Password-Generator-App/issues/3) are present.
 
