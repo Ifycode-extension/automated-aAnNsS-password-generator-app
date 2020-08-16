@@ -39,7 +39,7 @@
         inputLength -= 1;
     
         let currentCharacter = allowedCharactersFieldValue.charAt(inputLength);  
-        userApi.innerHTML = `${allowedCharactersFieldValue}:  `;
+        userApi.innerHTML = `${allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\]\\,{,}, , ])/g, '').replace(/([0-9])/g, '')}:  `;
     
         /*=======================================================
         create code elements for user input processing/conversion
@@ -55,7 +55,9 @@
             currentCharacter === 'n',
             currentCharacter === 'N',
             currentCharacter === 's',
-            currentCharacter === 'S' 
+            currentCharacter === 'S',
+            currentCharacter.match(/([a,A,n,N,s,S])/),
+            currentCharacter === ','
         ]
 
         function rideOn() {
@@ -63,8 +65,6 @@
             errorBox.style.color = 'blue';
             errorBoxSmall.innerHTML = 'Ride on!';
             errorBoxSmall.style.color = 'blue';
-            test.innerHTML = "Ride on!";
-            test.style.color = 'blue';
             passwordUpdate.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> randomly added <mark class="larger">${currentCharacter}</mark> to your password combo`;
             passwordUpdate.style.color = '#000';
             passwordUpdateSmall.innerHTML = `<mark class="larger">${allowedCharactersFieldValue.charAt(inputLength)}</mark> added <mark class="larger">${currentCharacter}</mark> to your password`;
@@ -88,8 +88,10 @@
             larger[3].style.fontSize = '1.1em';    
         } 
         
+        
         function displayLogic() {
             
+            allowedCharactersField.value = allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\]\\,{,}, , ])/g, '').replace(/([0-9])/g, '');
             /*====================================================================
             Use inputLength to find actual array index number of the code elements 
             and store inside arr variable (technically, inputLength and arr are one
@@ -107,36 +109,20 @@
             let character = document.getElementsByTagName('code');
             character[arr].innerHTML = `${currentCharacter}`;
 
-            
-            let test = document.getElementById('test');
             if (currentCharacter === '' && allowedCharactersFieldValue.length > 0) {
                 //character[arr].innerHTML = '';
                 errorBox.innerHTML = `Character not allowed!`;
                 errorBox.style.color = 'red';
                 errorBoxSmall.innerHTML = `Character not allowed!`;
                 errorBoxSmall.style.color = 'red';
-                test.innerHTML = "Character not allowed!";
-                test.style.color = 'red';
                 passwordUpdateSmall.innerHTML = 'Type in any of these: aAnNsS';
                 passwordUpdateSmall.style.color = 'black';
                 passwordUpdate.innerHTML = 'Type in any of these alphabeths: aAnNsS';
                 passwordUpdate.style.color = 'black';
-                //allowedCharactersField.value = allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\,{,}, , ])/g, '').replace(/([0-9])/g, '');
-                allowedCharactersField.value = allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\]\\,{,}, , ])/g, '').replace(/([0-9])/g, '');
             }else {
                 rideOn();
             }
 
-            /*            
-            //gets the first position/index of occurence of 'a'
-            let indexOf_a = allowedCharactersField.value.indexOf('a');
-            console.log(indexOf_a);
-            console.log(`InputLength: ${inputLength}`);
-            console.log(`AlChaLength: ${allowedCharactersFieldValue.length}`);
-            if (indexOf_a < inputLength) {
-               //clean it up here with... allowedCharactersField.value = 
-            }*/
-            
             /*==============================================
             The goal is to get both user input and generated 
             password to be displayed in the format described
@@ -180,10 +166,17 @@
             aRR += 1; 
             character[aRR].innerHTML = ''; 
 
-            if (arr < 0 && inputLength < 0) {
-            aRR -= 1;
-            character[aRR].innerHTML = '';
+            if (outputField.value.length > allowedCharactersField.value.length) {
+               console.log(character[aRR].innerHTML);
             }
+
+            if (arr < 0 && inputLength < 0) {
+                aRR -= 1;
+                character[aRR].innerHTML = '';
+            }
+
+
+            
            
             /*==================================================
             Display the code elements content in the outputField
@@ -193,8 +186,28 @@
             
             //input fields output these signs as &amp; &lt; &gt; - Replace with & < >
             outputField.value = outputField.value.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+            
+            /*-----------------------------------------------------------------------------
+            Trying to correct a bug with the next 14 lines
+            ----------------| correction start |------------------------------------------*/
+            let lastOutputFieldCharacter = outputField.value.charAt(aRR);
+            /*
+            console.log(lastOutputFieldCharacter);
+            console.log(outputField.value.indexOf(lastOutputFieldCharacter));
+            console.log(outputField.value.length);
+            console.log(allowedCharactersField.value.length);
+            */
+            if (outputField.value.length > allowedCharactersField.value.length) {
+                outputField.value = outputField.value.replace(lastOutputFieldCharacter, '');
+                /*
+                aRR -= 1;
+                console.log(character[aRR]);
+                */
+            }
+            //----------------| correction end |------------------------------------------
         }
 
+        //functions for copy button (enable and disable)
         function enableButton() {
             copyPasswordBtn.classList.remove('lightgrey');
             copyPasswordBtn.classList.add('darkgrey');
@@ -241,10 +254,18 @@
                 currentCharacter = symbolCharacters[s];
             }
 
-            if (!allowedCharacter[0] && !allowedCharacter[1] && !allowedCharacter[2] && !allowedCharacter[3] && !allowedCharacter[4] && !allowedCharacter[5]) { 
+            if (!allowedCharacter[6]) {
                 currentCharacter = '';
+                allowedCharactersField.value = allowedCharactersField.value.replace(/([b,c,d,e,f,g,h,i,j,k,l,m,o,p,q,r,t,u,v,w,x,y,z,B,C,D,E,F,G,H,I,J,K,L,M,O,P,Q,R,T,U,V,W,X,Y,Z])/g, '').replace(/([`,~,!,@,#,$,%,^,&,*,(,),-,_,+,=,|,;,:,',",,,<,.,>,?,/\,[\]\\,{,}, , ])/g, '').replace(/([0-9])/g, '');
             }
 
+            //Specially taking care of troublesome comma (,)
+            if (allowedCharacter[7]) {
+                currentCharacter = '';
+                allowedCharactersField.value = allowedCharactersField.value.replace(',', '');
+            }
+
+            //call button functions
             if (allowedCharactersFieldValue.length < 8) {
                 disableButton();
             }else {
@@ -257,8 +278,6 @@
                 errorBox.style.color = 'grey';
                 errorBoxSmall.innerHTML = 'Success or error message here';
                 errorBoxSmall.style.color = 'grey';
-                test.innerHTML = "Success or error message here";
-                test.style.color = 'grey';
                 passwordUpdate.innerHTML = 'Latest update to password displays here';
                 passwordUpdate.style.color = 'grey';
                 passwordUpdateSmall.innerHTML = 'Latest update to password here';
@@ -453,7 +472,7 @@
     }
 
     //call the three functions on input
-    allowedCharactersField.addEventListener('input', function() {    
+    allowedCharactersField.addEventListener('input', function() {
         passwordGenerator(); 
         passwordAnalyser();
         passwordStrength();
