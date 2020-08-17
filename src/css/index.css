@@ -300,6 +300,10 @@ button {
   padding: 15px;
 }
 
+a {
+  color: #02ec7f;
+}
+
 h3 {
   margin: 50px 0 0 0;
   color: #ddd;
@@ -328,6 +332,10 @@ footer {
 footer > * {
   margin: 15px 0;
   font-size: 0.9em;
+}
+
+footer a {
+  color: white;
 }
 
 .grey {
