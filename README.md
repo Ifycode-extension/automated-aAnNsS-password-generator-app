@@ -11,7 +11,7 @@ The image below shows an example of a 10 digit password (i.e. string with index 
 
 When user enters or deletes characters in an orderly manner, there is no issue. When characters are not entered in an orderly manner, some [issues](https://github.com/Ifycode/Automated-aAnNsS-Password-Generator-App/issues/3) are present.
 
-### aAnNsS meaning
+### How aAnNsS works
 Users only need the first letters from the words alphabeth, number & symbol to generate random characters for their password on the fly:
 * a generates random lowercase alphabeth
 * A generates random uppercase alphabeth
