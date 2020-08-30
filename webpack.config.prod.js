@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+//import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default {
   debug: true,
@@ -37,6 +38,15 @@ export default {
 
     //Minify js
     new webpack.optimize.UglifyJsPlugin()
+    /*,
+    //not able to get any of copy webpack plugin, file loader or url-loader to copy images to dist
+    new CopyWebpackPlugin(
+      {
+        patterns: [
+          {from:'src/img',to:'dist/img'}
+        ]
+      }
+     )*/
   ],
   module: {
     loaders: [

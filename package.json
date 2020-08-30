@@ -5,24 +5,26 @@
   "homepage": "https://ifycode.github.io/Automated-aAnNsS-Password-Generator-App",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel open:src lint:watch dev",
+    "start": "npm-run-all --parallel open:src lint:watch",
     "open:src": "babel-node buildScripts/srcServer.js",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
     "localtunnel": "lt -h \"http://serverless.social\" -p 3000 --subdomain ifycode",
     "share": "npm-run-all --parallel open:src localtunnel",
     "clean-dist": "rimraf ./dist && mkdir dist",
-    "prebuild": "npm-run-all clean-dist lint",
+    "copy": "copyfiles -f ./src/img/* ./dist/img",
+    "imagecopy": "babel-node buildScripts/imageCopyMessage.js",
+    "prebuild": "npm-run-all clean-dist copy imagecopy lint",
     "build": "babel-node buildScripts/build.js",
     "postbuild": "babel-node buildScripts/distServer.js",
-    "opensrc2": "babel-node buildScripts/distServer.js",
     "dev": "lite-server",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "surge ./dist"
   },
   "author": "App by Obiagba Mary (Dev environment from Cory House's building a javascript dev environment course)",
   "license": "MIT",
   "dependencies": {
+    "copy-webpack-plugin": "^6.0.4",
+    "copyfiles": "^2.3.0",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {

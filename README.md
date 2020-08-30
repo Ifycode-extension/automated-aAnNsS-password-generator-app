@@ -1,8 +1,14 @@
 # Automated aAnNsS Password Generator App
 ### About Project
 aAnNsS password generator app features are drawn from javascript development environment automation and Github's colorful percentage display of code that make up user's repo. The app is made up a genarator, analyser (graphical analysis of the password make up) and strength checker.
-Created during Google Africa Developers scholarship 2020 program (learning phase 2).
+Created during Google Africa Developers scholarship 2020 program (learning phase 2). Set up development environment with knowledge from course by @coryhouse - Building a javascript development environment.
 view live on [Github Pages](https://ifycode.github.io/Automated-aAnNsS-Password-Generator-App/).
+
+#### Mobile version
+![User Input Logic](./readmeExtension/aAnNsS-mobile.PNG)
+
+#### Desktop version
+![User Input Logic](./readmeExtension/aAnNsS-password-generator-app.PNG)
 
 ### User Input Logic
 The image below shows an example of a 10 digit password (i.e. string with index of 0 - 9) will be generated each time the user adds to or deletes a character from the "allowedCharacters" input field in an orderly manner:
