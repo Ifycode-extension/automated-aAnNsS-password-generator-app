@@ -2,7 +2,7 @@
 ## About Project
 aAnNsS password generator app features are drawn from javascript development environment automation and Github's colorful percentage display of code that make up user's repo. The app is made up a genarator, analyser (graphical analysis of the password make up) and strength checker.
 Created during Google Africa Developers scholarship 2020 program (learning phase 2). Set up development environment with knowledge from course by @coryhouse - Building a javascript development environment.
-[View aAnNsS Password Generator App live on Github Pages](https://ifycode-extension.github.io/automated-aannss-password-generator-app/).
+[View aAnNsS Password Generator App live on Github Pages](https://ifycode-extension.github.io/automated-aAnNsS-password-generator-app/).
 
 |Desktop |Mobile |
 |:-- |:-- |
